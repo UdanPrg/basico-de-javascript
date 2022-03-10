@@ -63,7 +63,6 @@
     </div>
 
     <script>
-        var cpuPlayer = Math.random().toFixed(2);
         var resultado = document.getElementById("winner");
         var input = document.getElementById("choose-player");
         var choosePlayer = document.getElementById("player-choose");
@@ -73,20 +72,25 @@
         
         
         function ganador(){
+            var cpuPlayer = Math.random().toFixed(2);
             var player = Number(input.value);
-            if(cpuPlayer <= 0.33){
-                cpuPlayer = "Piedra";
-            }else if(cpuPlayer > 0.33  && cpuPlayer < 0.66){
-                cpuPlayer = "Papel";
-            }else{
-                cpuPlayer = "Tijera"
-            }
             if(player === 1){
                 player = "Piedra";
             }else if(player === 2){
                 player = "Papel";
             }else if (player === 3){
                 player = "Tijera"
+            }else{
+                player = "No valido"
+            }
+            if(player === "No valido"){
+                cpuPlayer = "Esperando a jugador"
+            }else if(cpuPlayer <= 0.33){
+                cpuPlayer = "Piedra";
+            }else if(cpuPlayer > 0.33  && cpuPlayer < 0.66){
+                cpuPlayer = "Papel";
+            }else{
+                cpuPlayer = "Tijera"
             }
             console.log("Me ejecuto");
             console.log({player, cpuPlayer});
