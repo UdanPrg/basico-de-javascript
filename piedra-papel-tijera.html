@@ -65,11 +65,12 @@
     <script>
         var cpuPlayer = Math.random().toFixed(2);
         var resultado = document.getElementById("winner");
-        var player = Number(document.getElementById("choose-player").value);
+        var input = document.getElementById("choose-player");
+        var player = Number(input.value);
         var choosePlayer = document.getElementById("player-choose");
         var chooseCPU = document.getElementById("cpu-choose");
         
-        player.addEventListener('change', ganador);
+        input.addEventListener('change', ganador);
         
         if(cpuPlayer <= 0.33){
             cpuPlayer = "Piedra";
@@ -85,17 +86,18 @@
         }else if (player === 3){
             player = "Tijera"
         }
-        choosePlayer.HTMLElement.innerText(player);
-        chooseCPU.HTMLElement.innerText(cpuPlayer);
+        choosePlayer.innerText = player;
+        chooseCPU.innerText = cpuPlayer;
+
         function ganador(){
             if(player == cpuPlayer){
-                resultado.HTMLElement.innerText("No hay ganador");
+                resultado.innerText = "No hay ganador";
             }else if((player == "Piedra" && cpuPlayer == "Papel") || (player == "Papel" && cpuPlayer == "Tijera") || (player == "Tijera" && cpuPlayer == "Piedra")){
-                resultado.HTMLElement.innerText("CPU a ganado!!!");
+                resultado.innerText = "CPU a ganado!!!";
             }else if((player == "Piedra" && cpuPlayer == "Tijera") || (player == "Tijera" && cpuPlayer == "Papel") || (player == "Papel" && cpuPlayer == "Piedra")){
-                resultado.HTMLElement.innerText("Tu has ganado!!!");
+                resultado.innerText = "Tu has ganado!!!";
             }else{
-                resultado.HTMLElement.innerText("Coloca una opción valida para jugar");
+                resultado.innerText = "Coloca una opción valida para jugar";
             }
         }
     </script>
