@@ -48,7 +48,7 @@
                 <h2 id="player-choose"></h2>
             </div>
             <div class="vs">
-                <h3>vs</h3>
+                <h2>vs</h2>
             </div>
             <div class="cpu-player">
                 <h1>CPU</h1>
@@ -66,30 +66,32 @@
         var cpuPlayer = Math.random().toFixed(2);
         var resultado = document.getElementById("winner");
         var input = document.getElementById("choose-player");
-        var player = Number(input.value);
         var choosePlayer = document.getElementById("player-choose");
         var chooseCPU = document.getElementById("cpu-choose");
         
-        input.addEventListener('change', ganador);
+        input.addEventListener('keyup', ganador);
         
-        if(cpuPlayer <= 0.33){
-            cpuPlayer = "Piedra";
-        }else if(cpuPlayer > 0.33  && cpuPlayer < 0.66){
-            cpuPlayer = "Papel";
-        }else{
-            cpuPlayer = "Tijera"
-        }
-        if(player === 1){
-            player = "Piedra";
-        }else if(player === 2){
-            player = "Papel";
-        }else if (player === 3){
-            player = "Tijera"
-        }
-        choosePlayer.innerText = player;
-        chooseCPU.innerText = cpuPlayer;
-
+        
         function ganador(){
+            var player = Number(input.value);
+            if(cpuPlayer <= 0.33){
+                cpuPlayer = "Piedra";
+            }else if(cpuPlayer > 0.33  && cpuPlayer < 0.66){
+                cpuPlayer = "Papel";
+            }else{
+                cpuPlayer = "Tijera"
+            }
+            if(player === 1){
+                player = "Piedra";
+            }else if(player === 2){
+                player = "Papel";
+            }else if (player === 3){
+                player = "Tijera"
+            }
+            console.log("Me ejecuto");
+            console.log({player, cpuPlayer});
+            
+            
             if(player == cpuPlayer){
                 resultado.innerText = "No hay ganador";
             }else if((player == "Piedra" && cpuPlayer == "Papel") || (player == "Papel" && cpuPlayer == "Tijera") || (player == "Tijera" && cpuPlayer == "Piedra")){
@@ -99,7 +101,9 @@
             }else{
                 resultado.innerText = "Coloca una opción valida para jugar";
             }
+            choosePlayer.innerText = player;
+            chooseCPU.innerText = cpuPlayer;
         }
-    </script>
+        </script>
 </body>
 </html>
