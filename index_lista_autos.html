@@ -14,7 +14,6 @@
             --black: rgb(0,0,0);
             --white: rgb(255,255,255);
             --light-gray: rgb(200,200,200);
-            --: rgb(200,200,200);
             --sm: 14px;
             --md: 18px;
             --lg: 24px;
@@ -55,29 +54,32 @@
             background-color: var(--black);
             border-radius: 7px;
             padding: 24px;
+            text-align: center;
         }
         .enter-data h1{
             color: var(--light-gray);
             text-align: center;
         }
-        .enter-data form{
-            text-align: center;
-        }
         .enter-data .input-container{
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .enter-data .input-container input:disabled{
+            background-color: var(--white);
         }
         .enter-data .input-container input{
-            display: inline;
-            margin: 0 4px;
+            width: 45%;
+            margin: 0 4px 8px;
             padding: 7px;
             border-radius: 5px;
             border: 0;
         }
-        .enter-data form button{
+        .enter-data button{
             appearance: none;
-            margin-top: 15px;
+            margin-top: 7px;
             background-color: var(--light-gray);
             color: var(--black);
             border-radius: 5px;
@@ -86,13 +88,15 @@
             padding: 12px 50px 10px;
             transition: all 0.35s;
         }
-        .enter-data form button:hover{
+        .enter-data button:hover{
             padding: 12px 35px 10px;
             cursor: pointer;
             transition: all 0.35s;
         }
         .show-data{
-            width: 80%;
+            width: 100%;
+            height: 290px;
+            overflow-y: auto;
             display: flex;
             justify-content: center;
             background-color: var(--white);
@@ -113,6 +117,17 @@
             border-spacing: 0;
 
         }
+        @media (min-width: 640px) {
+            .enter-data .input-container input#number{
+                width: 50px;
+            }
+            .enter-data .input-container input{
+                width: 25%;
+            }
+            .show-data{
+                width: 80%;
+            }
+        }
     </style>
 </head>
 
@@ -124,14 +139,15 @@
         <div class="sections-container">
             <div class="enter-data">
                 <h1>Introduce los datos del nuevo carro</h1>
-                <form action="/">
-                    <div class="input-container">
-                        <input type="text" placeholder="Marca del carro">
-                        <input type="text" placeholder="Modelo del carro">
-                        <input type="number" placeholder="Año del carro">
-                    </div>
-                    <button id="action">Añadir</button>
-                </form>
+                
+                <div class="input-container">
+                    <input type="text" id="number" value="1" disabled>
+                    <input type="text" placeholder="Marca del carro" id="brand" value="prueba">
+                    <input type="text" placeholder="Modelo del carro" id="model" value="prueba">
+                    <input type="number" placeholder="Año del carro" id="annio" value="500">
+                </div>
+                <button id="action">Añadir</button>
+               
             </div>
             <div class="show-data">
                 <table>
@@ -143,29 +159,46 @@
                             <th>Año</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Toyota</td>
-                            <td>Corolla</td>
-                            <td>2020</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tbody"></tbody>
                 </table>
             </div>
         </div>
     </main>
     <script>
         const send = document.getElementById("action");
-
-        function addCarObject(brand, model, annio){
+        const tbody = document.getElementById("tbody");
+        var n = 1;
+        function carObject(number, brand, model, annio){
+            this.number = number;
             this.brand = brand;
             this.model = model;
             this.annio = annio;
         }
+        
+        function showCar(){
+            var getNumero = document.getElementById("number");
+            var incrementNumero = getNumero.value;
+            var no = Number(incrementNumero);
+            
+            var marca = document.getElementById("brand");
+            var modelo = document.getElementById("model");
+            var anio = document.getElementById("annio");
+            var newCar = new carObject(no, marca.value, modelo.value, Number(anio.value));
+            
+            tbody.innerHTML += `<tr>
+                    <td>${newCar.number}</td>
+                    <td>${newCar.brand}</td>
+                    <td>${newCar.model}</td>
+                    <td>${newCar.annio}</td>
+                </tr>`;
 
+            getNumero.value = ++n
+            marca.value = "";
+            modelo.value = "";
+            anio.value = "";
+        }
 
-        send.addEventListener('change', addCar);
+        send.addEventListener('click', showCar);
     </script>
 </body>
 </html>
