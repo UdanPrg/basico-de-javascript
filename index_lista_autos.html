@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Lista limitada</title>
+    <style>
+        /* your styles go here */
+        :root{
+            --black: rgb(0,0,0);
+            --white: rgb(255,255,255);
+            --light-gray: rgb(200,200,200);
+            --: rgb(200,200,200);
+            --sm: 14px;
+            --md: 18px;
+            --lg: 24px;
+        }
+        *{
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .main-container{
+            display: grid;
+            place-items: center;
+            grid-template: 20% 60% 20% / 20% 60% 20%;
+            width: auto;
+            height: 100vh;
+        }
+        #video{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: 1;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .main-container .sections-container{
+            display: inherit;
+            grid-area: 2 / 2;
+            z-index: 10;
+            row-gap: 24px;
+            place-items: center;
+        }
+        .enter-data{
+            background-color: var(--black);
+            border-radius: 7px;
+            padding: 24px;
+        }
+        .enter-data h1{
+            color: var(--light-gray);
+            text-align: center;
+        }
+        .enter-data form{
+            text-align: center;
+        }
+        .enter-data .input-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .enter-data .input-container input{
+            display: inline;
+            margin: 0 4px;
+            padding: 7px;
+            border-radius: 5px;
+            border: 0;
+        }
+        .enter-data form button{
+            appearance: none;
+            margin-top: 15px;
+            background-color: var(--light-gray);
+            color: var(--black);
+            border-radius: 5px;
+            font-size: var(--md);
+            border: 0;
+            padding: 12px 50px 10px;
+            transition: all 0.35s;
+        }
+        .enter-data form button:hover{
+            padding: 12px 35px 10px;
+            cursor: pointer;
+            transition: all 0.35s;
+        }
+        .show-data{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            background-color: var(--white);
+            padding: 12px;
+            border-radius: 5px;
+        }
+        .show-data table{
+            width: 100%;
+            text-align: justify;
+        }
+        .show-data table{
+            border-spacing: 0;
+        }
+        .show-data table th,
+        .show-data table td{
+            border-bottom: 1px solid var(--light-gray);
+            padding: 7px 5px;
+            border-spacing: 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main-container">
+        <video autoplay muted loop id="video">
+            <source src="./pexels-kelly-lacy-5669768.mp4" type="video/mp4"> 
+        </video>
+        <div class="sections-container">
+            <div class="enter-data">
+                <h1>Introduce los datos del nuevo carro</h1>
+                <form action="/">
+                    <div class="input-container">
+                        <input type="text" placeholder="Marca del carro">
+                        <input type="text" placeholder="Modelo del carro">
+                        <input type="number" placeholder="Año del carro">
+                    </div>
+                    <button id="action">Añadir</button>
+                </form>
+            </div>
+            <div class="show-data">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Año</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Toyota</td>
+                            <td>Corolla</td>
+                            <td>2020</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+        const send = document.getElementById("action");
+
+        function addCarObject(brand, model, annio){
+            this.brand = brand;
+            this.model = model;
+            this.annio = annio;
+        }
+
+
+        send.addEventListener('change', addCar);
+    </script>
+</body>
+</html>
