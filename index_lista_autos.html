@@ -147,7 +147,7 @@
                     <input type="number" placeholder="Año del carro" id="annio">
                 </div>
                 <button id="action">Añadir</button>
-               
+                
             </div>
             <div class="show-data">
                 <table>
@@ -165,6 +165,8 @@
         </div>
     </main>
     <script>
+        // ! Limitar lista a 30 elementos
+        // ! No permitir AÑADIR si no está completa la información
         const send = document.getElementById("action");
         const tbody = document.getElementById("tbody");
         var n = 1;

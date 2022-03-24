@@ -13,7 +13,7 @@ console.log(frutas.length); // 4
 console.log(frutas[0]); // Manzana
 
 
-// Métodos para mutar Arrays
+//! -- Métodos para MUTAR/ALTERAR/modificar Arrays 
 
 // Agregar Elemento
 var masFrutas = frutas.push("Uvas"); // frutas -> ["Manzana", "Plátano", "Cereza", "Fresa", "Uvas"]
